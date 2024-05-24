@@ -8,11 +8,12 @@ NAME = so_long
 #                 PATHS TO FILES                 #
 #************************************************#
 VALID_PATH = ./map_validation
-ERROR_PATH = ./
-SRC_PATH = ./
+# ERROR_PATH = ./
+# SRC_PATH = ./
 OBJ_PATH = ./obj
 
-LIBFT_PATH = ./ryusupov_h/libftt
+MLX_PATH = ./MLX_42
+LIBFT_PATH = ./ryusupov_h/libft
 LIBFTPRINTF_PATH = ./ryusupov_h/printf
 GNL_PATH = ./ryusupov_h/get_next_line
 #************************************************#
@@ -42,6 +43,7 @@ MAIN_OBJ = $(OBJ_PATH)/main.o
 LIBFT = $(LIBFT_PATH)/libft.a
 LIBFTPRINTF = $(LIBFTPRINTF_PATH)/libftprintf.a
 GNL = $(GNL_PATH)/get_lext_line.a
+MLX = $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 #************************************************#
 #                   ANIMATIONS                   #
 #************************************************#
@@ -75,15 +77,15 @@ GNL = $(GNL_PATH)/get_lext_line.a
 #************************************************#
 all: $(NAME)
 
-$(NAME): $(MAIN_OBJ) $(VALID_OBJ) $(SRC_OBJ) $(LIBFT) $(LIBFTPRINTF) $(GNL)
+$(NAME): $(MAIN_OBJ) $(VALID_OBJ) $(LIBFT) $(LIBFTPRINTF) $(GNL)
 	@$(CC) $(CFLAGS) $^ -o $@
 	$(ANIMATE_WELCOME)
 
 $(OBJ_PATH)/%.o: $(VALID_PATH)/%.c | $(OBJ_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+# $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
+# 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_PATH)/main.o: $(MAIN_SRC) | $(OBJ_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -97,14 +99,18 @@ $(LIBFT):
 $(LIBFTPRINTF):
 	@$(MAKE) -C $(LIBFTPRINTF_PATH)
 
-$(GNL)
+$(GNL):
 	@$(MAKE) -C $(GNL_PATH)
+
+mlx:
+	@cmake $(MLX_PATH) -B $(MLX_PATH)/build && make -C $(MLX_PATH)/build -j4
 
 clean:
 	@$(RM) $(OBJ_PATH)
 	@$(MAKE) -C $(LIBFT_PATH) clean
 	@$(MAKE) -C $(LIBFTPRINTF_PATH) clean
 	@$(MAKE) -C $(GNL_PATH) clean
+	@$(RM) $(LIBMLX)/build
 	$(ANIMATE_PROCESSING)
 
 fclean: clean
@@ -115,7 +121,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re mlx
 #************************************************#
 #               ANIMATIONS FRAMES                #
 #************************************************#

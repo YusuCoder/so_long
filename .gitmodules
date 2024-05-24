@@ -2,8 +2,11 @@
 	path = ryusupov_h/get_next_line
 	url = https://github.com/YusuCoder/get_next_line.git
 [submodule "ryusupov_h/libft"]
-	path = ryusupov/libft
+	path = ryusupov_h/libft
 	url = https://github.com/YusuCoder/libft.git
 [submodule "ryusupov_h/printf"]
-	path = ryusupov/printf
+	path = ryusupov_h/printf
 	url = https://github.com/YusuCoder/printf.git
+[submodule "MLX42"]
+	path = MLX42
+	url = https://github.com/codam-coding-college/MLX42.git
