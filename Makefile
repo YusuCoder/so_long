@@ -7,15 +7,11 @@ NAME = so_long
 #************************************************#
 #                 PATHS TO FILES                 #
 #************************************************#
-VALID_PATH = ./map_validation
-# ERROR_PATH = ./
-# SRC_PATH = ./
+MLX_PATH = MLX42
 OBJ_PATH = ./obj
-
-MLX_PATH = ./MLX_42
 LIBFT_PATH = ./ryusupov_h/libft
 LIBFTPRINTF_PATH = ./ryusupov_h/printf
-GNL_PATH = ./ryusupov_h/get_next_line
+MLX_SRC_PATH = $(shell find . -iname "*.c")
 #************************************************#
 #                    COMMANDS                    #
 #************************************************#
@@ -25,25 +21,23 @@ CFLAGS = -Wall -Wextra -Werror -g
 #************************************************#
 #                  SOURCE FILES                  #
 #************************************************#
-VALID_SRC = $(VALID_PATH)/
-
-# SRC_SRC = $(SRC_PATH)/
-
-
 MAIN_SRC = main.c
 #************************************************#
 #                  OBJECT FILES                  #
 #************************************************#
-VALID_OBJ = $(patsubst %.c, $(OBJ_PATH)/%.o, $(notdir $(VALID_SRC)))
+# VALID_OBJ = $(patsubst %.c, $(OBJ_PATH)/%.o, $(notdir $(VALID_SRC)))
 # SRC_OBJ = $(patsubst %.c, $(OBJ_PATH)/%.o, $(notdir $(SRC_SRC)))
 MAIN_OBJ = $(OBJ_PATH)/main.o
+#************************************************#
+#                     HEADERS                    #
+#************************************************#
+INC	:= -I ./include -I $(MLX_PATH)/include
 #************************************************#
 #                  SUB LIBRARIES                 #
 #************************************************#
 LIBFT = $(LIBFT_PATH)/libft.a
 LIBFTPRINTF = $(LIBFTPRINTF_PATH)/libftprintf.a
-GNL = $(GNL_PATH)/get_lext_line.a
-MLX = $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+MLX = $(MLX_PATH)/build/libmlx42.a -ldl -lglfw -pthread -lm
 #************************************************#
 #                   ANIMATIONS                   #
 #************************************************#
@@ -75,14 +69,20 @@ MLX = $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 #************************************************#
 #                  COMPILATIONS                  #
 #************************************************#
-all: $(NAME)
+all: mlx $(NAME)
 
-$(NAME): $(MAIN_OBJ) $(VALID_OBJ) $(LIBFT) $(LIBFTPRINTF) $(GNL)
+mlx:
+	@cmake $(MLX_PATH) -B $(MLX_PATH)/build && make -C $(MLX_PATH)/build -j4
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(INC)
+
+$(NAME): $(MAIN_OBJ) $(LIBFT) $(LIBFTPRINTF) $(MLX) $(INC) $(MLX_SRC_PATH)
 	@$(CC) $(CFLAGS) $^ -o $@
 	$(ANIMATE_WELCOME)
 
-$(OBJ_PATH)/%.o: $(VALID_PATH)/%.c | $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+# $(OBJ_PATH)/%.o: $(VALID_PATH)/%.c | $(OBJ_PATH)
+# 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 # 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -99,25 +99,23 @@ $(LIBFT):
 $(LIBFTPRINTF):
 	@$(MAKE) -C $(LIBFTPRINTF_PATH)
 
-$(GNL):
-	@$(MAKE) -C $(GNL_PATH)
+$(MLX):
+	@$(MAKE) -C $(MLX_PATH)
 
-mlx:
-	@cmake $(MLX_PATH) -B $(MLX_PATH)/build && make -C $(MLX_PATH)/build -j4
+# $(GNL):
+# 	@$(MAKE) -C $(GNL_PATH)
 
 clean:
 	@$(RM) $(OBJ_PATH)
 	@$(MAKE) -C $(LIBFT_PATH) clean
 	@$(MAKE) -C $(LIBFTPRINTF_PATH) clean
-	@$(MAKE) -C $(GNL_PATH) clean
-	@$(RM) $(LIBMLX)/build
+	@$(RM) MLX42/build
 	$(ANIMATE_PROCESSING)
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT_PATH) fclean
 	@$(MAKE) -C $(LIBFTPRINTF_PATH) fclean
-	@$(MAKE) -C $(GNL_PATH) fclean
 
 re: fclean all
 
@@ -125,3 +123,4 @@ re: fclean all
 #************************************************#
 #               ANIMATIONS FRAMES                #
 #************************************************#
+
