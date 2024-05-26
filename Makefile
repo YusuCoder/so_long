@@ -1,24 +1,74 @@
-NAME        := so_long
-CC          := gcc
-CFLAGS      := -Wextra -Wall -Werror -Wunreachable-code -Ofast
-RM          := rm -rf
+NAME				:= so_long
+CC					:= gcc
+CFLAGS				:= -Wextra -Wall -Werror -g
+RM					:= rm -rf
 #************************************************#
 #                 PATHS TO FILES                 #
 #************************************************#
-LIBMLX      := ./MLX42
-OBJ_PATH    := ./obj
-LIBFT_PATH  := ./ryusupov_h/libft
-LIBFTPRINTF_PATH := ./ryusupov_h/printf
+LIBMLX				:= ./MLX42
+OBJ_PATH			:= ./obj
+LIBFT_PATH			:= ./ryusupov_h/libft
+LIBFTPRINTF_PATH	:= ./ryusupov_h/printf
+VALIDATION_PATH		:= ./validation
 #************************************************#
 #                 SOURCE FILES                   #
 #************************************************#
-INCS        := -I ./include/MLX42 -I $(LIBMLX)/include/MLX42 -I $(LIBFT_PATH) -I $(LIBFTPRINTF_PATH)
-LIBS        := $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS        := main.c
-OBJS        := $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
+INCS				:= -I ./include/MLX42 -I $(LIBMLX)/include/MLX42 -I $(LIBFT_PATH) -I $(LIBFTPRINTF_PATH)
+LIBS				:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+SRCS				:=	main.c \
+					validation/error_check_utils.c \
+					validation/error_check.c \
+					validation/error_free.c \
+					validation/map_validation.c
 
-LIBFT       := $(LIBFT_PATH)/libft.a
-LIBFTPRINTF := $(LIBFTPRINTF_PATH)/libftprintf.a
+OBJS				:= $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
+
+LIBFT				:= $(LIBFT_PATH)/libft.a
+LIBFTPRINTF			:= $(LIBFTPRINTF_PATH)/libftprintf.a
+
+#************************************************#
+#                  COMPILATIONS                  #
+#************************************************#
+all: $(LIBFT) $(LIBFTPRINTF) libmlx $(NAME)
+
+libmlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build > /dev/null 2>&1 && make -C $(LIBMLX)/build -j4 > /dev/null 2>&1
+
+$(OBJ_PATH)/%.o: %.c | $(OBJ_PATH)/validation
+	@$(CC) $(CFLAGS) -o $@ -c $< $(INCS)
+
+$(OBJ_PATH):
+	@mkdir -p $(OBJ_PATH)
+
+$(OBJ_PATH)/validation:
+	@mkdir -p $(OBJ_PATH)/validation
+
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_PATH) > /dev/null 2>&1
+
+$(LIBFTPRINTF):
+	@$(MAKE) -C $(LIBFTPRINTF_PATH) > /dev/null 2>&1
+
+$(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF)
+	@$(CC) $(OBJS) $(LIBS) $(LIBFT) $(LIBFTPRINTF) $(INCS) -o $(NAME)
+	$(ANIMATE_WELCOME)
+
+clean:
+	@$(RM) $(OBJ_PATH)
+	@$(MAKE) -C $(LIBFT_PATH) clean > /dev/null 2>&1
+	@$(MAKE) -C $(LIBFTPRINTF_PATH) clean > /dev/null 2>&1
+	@$(RM) $(LIBMLX)/build
+	$(ANIMATE_PROCESSING)
+
+fclean: clean
+	@$(RM) $(NAME)
+	@$(MAKE) -C $(LIBFT_PATH) fclean > /dev/null 2>&1
+	@$(MAKE) -C $(LIBFTPRINTF_PATH) fclean > /dev/null 2>&1
+
+re: fclean all
+
+.PHONY: all clean fclean re libmlx
+
 #************************************************#
 #                   ANIMATIONS                   #
 #************************************************#
@@ -81,52 +131,13 @@ define ANIMATE_PROCESSING
 	@echo
 endef
 #************************************************#
-#                  COMPILATIONS                  #
-#************************************************#
-all: $(LIBFT) $(LIBFTPRINTF) libmlx $(NAME)
-
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build > /dev/null 2>&1 && make -C $(LIBMLX)/build -j4 > /dev/null 2>&1
-
-$(OBJ_PATH)/%.o: %.c | $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -o $@ -c $< $(INCS)
-
-$(OBJ_PATH):
-	@mkdir -p $(OBJ_PATH)
-
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_PATH) > /dev/null 2>&1
-
-$(LIBFTPRINTF):
-	@$(MAKE) -C $(LIBFTPRINTF_PATH) > /dev/null 2>&1
-
-$(NAME): $(OBJS) $(LIBFT) $(LIBFTPRINTF)
-	@$(CC) $(OBJS) $(LIBS) $(LIBFT) $(LIBFTPRINTF) $(INCS) -o $(NAME)
-	$(ANIMATE_WELCOME)
-
-clean:
-	@$(RM) $(OBJ_PATH)
-	@$(MAKE) -C $(LIBFT_PATH) clean > /dev/null 2>&1
-	@$(MAKE) -C $(LIBFTPRINTF_PATH) clean > /dev/null 2>&1
-	@$(RM) $(LIBMLX)/build
-	$(ANIMATE_PROCESSING)
-
-fclean: clean
-	@$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT_PATH) fclean > /dev/null 2>&1
-	@$(MAKE) -C $(LIBFTPRINTF_PATH) fclean > /dev/null 2>&1
-
-re: fclean all
-
-.PHONY: all clean fclean re libmlx
-#************************************************#
 #               ANIMATIONS FRAMES                #
 #************************************************#
 
-# FRAMES := 	"ss██╗sssssssssss██████╗s██╗sss██╗███████╗██╗ss██╗ssssssss███████╗██╗ssss██╗s█████╗s██████╗ssssssssssss██╗ss"\
-# 			"s██╔╝sssssssssss██╔══██╗██║sss██║██╔════╝██║ss██║ssssssss██╔════╝██║ssss██║██╔══██╗██╔══██╗sssssssssss╚██╗s"\
-# 			"██╔╝█████╗█████╗██████╔╝██║sss██║███████╗███████║ssssssss███████╗██║s█╗s██║███████║██████╔╝█████╗█████╗╚██╗"\
-# 			"╚██╗╚════╝╚════╝██╔═══╝s██║sss██║╚════██║██╔══██║ssssssss╚════██║██║███╗██║██╔══██║██╔═══╝s╚════╝╚════╝██╔╝"\
-# 			"s╚██╗sssssssssss██║sssss╚██████╔╝███████║██║ss██║███████╗███████║╚███╔███╔╝██║ss██║██║ssssssssssssssss██╔╝s"\
-# 			"ss╚═╝sssssssssss╚═╝ssssss╚═════╝s╚══════╝╚═╝ss╚═╝╚══════╝╚══════╝s╚══╝╚══╝s╚═╝ss╚═╝╚═╝ssssssssssssssss╚═╝ss"\
-# 			"sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+FRAMES :=	"ssssss███████╗s██████╗sssssssss██╗ssssss██████╗s███╗sss██╗s██████╗sssssss"\
+			"ssssss██╔════╝██╔═══██╗ssssssss██║sssss██╔═══██╗████╗ss██║██╔════╝sssssss"\
+			"█████╗███████╗██║sss██║ssssssss██║sssss██║sss██║██╔██╗s██║██║ss███╗█████╗"\
+			"╚════╝╚════██║██║sss██║ssssssss██║sssss██║sss██║██║╚██╗██║██║sss██║╚════╝"\
+			"ssssss███████║╚██████╔╝███████╗███████╗╚██████╔╝██║s╚████║╚██████╔╝ssssss"\
+			"ssssss╚══════╝s╚═════╝s╚══════╝╚══════╝s╚═════╝s╚═╝ss╚═══╝s╚═════╝sssssss"\
+			"sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"

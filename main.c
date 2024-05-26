@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:31 by mac               #+#    #+#             */
-/*   Updated: 2024/05/25 13:41:47 by mac              ###   ########.fr       */
+/*   Updated: 2024/05/26 16:51:38 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 int main(int argc, char **argv)
 {
-	int i = 0;
-
 	if (argc == 2)
 	{
 		if (!map_validation(argv[1]))
 		{
-			start_game(argv[1]);
+			ft_printf("Success!\n");
+			// start_game(argv[1]);
 		}
 		else
 		{
-			ft_printf(COLOR_RED"Error! Something is wrong with the Map!\n"RESET);
+			ft_printf(COLOR_RED"Error!\n"RESET);
 		}
 	}
 	else
-		ft_printf(COLOR_RED"Please enter only one level!\n"RESET);
+		ft_printf(COLOR_GREEN"manual: ./so_long <map_name>\n"RESET);
 	exit(EXIT_SUCCESS);
 }
+
+
+
 // static void ft_error(void)
 // {
 // 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
