@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ryusupov.h                                         :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/05/25 16:17:12 by mac              ###   ########.fr       */
+/*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
+/*   Updated: 2024/05/25 21:45:32 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define WIDTH 256
-#define HEIGHT 256
+#include "../ryusupov_h/ryusupov.h"
 
-/* STANDARD LIBRARIES */
-#include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdio.h>
-/* SUBMODULE LIBRARIES */
-#include "./libft/libft.h"
-#include "./printf/ft_printf.h"
-#include "../MLX42/include/MLX42/MLX42.h"
-
-typedef struct	s_map_data
+int	map_validation(char *input)
 {
-	char	**map;
-}				t_map_data;
+	char		*map_contents;
+	t_map_data	*map;
+
+	if (wrond_file(input))
+		return (wrong_file_error);
+	map_contents = open_map(input);
+	if (map_is_empty(map_contents))
+		return (empty_map_error(map_contents));
+	if (invalid_map(map->map))
+		return (map_error(map));
+	return (0);
+}
