@@ -75,30 +75,30 @@ re: fclean all
 define ANIMATE_WELCOME
 	@printf "\n\033[1;32mStarting the build process"
 	@sleep 0.1
-	@for i in {1..3}; do \
+	@bash -c 'for i in {1..3}; do \
 		printf "."; \
 		sleep 0.5; \
-	done
+	done'
 	@printf "\033[0m\n\n\n"
 	@sleep 0.5
 	@printf "\033[1;34mBuilding the project\033[0m\n"
-	@for i in {1..5}; do \
+	@bash -c 'for i in {1..5}; do \
 		printf "\033[1;33mCompiling file %d of 5...\033[0m\n" $$i; \
 		sleep 0.3; \
 		printf "\033[1;32mDone!\033[0m\n"; \
 		sleep 0.3; \
-	done
+	done'
 	@sleep 0.5
-	@for i in {1..3}; do \
+	@bash -c 'for i in {1..3}; do \
 		printf "\033[1;35mLinking...\033[0m\n"; \
 		sleep 0.5; \
-	done
+	done'
 	@printf "\033[1;32mBuild successful! 🎉\033[0m\n\n"
 	@sleep 0.5
 	@printf "\033[1;34mWelcome to the GAME !!!\033[0m\n\n"
 	@sleep 0.5
 	@for frame in $(FRAMES); do \
-		printf "\x1b[35m%s\n\033[0m" "$$frame"; \
+		printf "\033[1;35m%s\n\033[0m" "$$frame"; \
 		sleep 0.1; \
 	done
 	@echo
@@ -107,23 +107,23 @@ endef
 define ANIMATE_PROCESSING
 	@printf "\n\033[1;31mCleaning up the mess"
 	@sleep 0.5
-	@for i in {1..3}; do \
+	@bash -c 'for i in {1..3}; do \
 		printf "."; \
 		sleep 0.2; \
-	done
+	done'
 	@printf "\033[0m\n\n"
 	@sleep 0.5
-	@for i in {1..5}; do \
+	@bash -c 'for i in {1..5}; do \
 		printf "\033[1;33mRemoving object files %d of 5...\033[0m\n" $$i; \
 		sleep 0.3; \
 		printf "\033[1;32mGone!\033[0m\n"; \
 		sleep 0.3; \
-	done
+	done'
 	@sleep 0.5
-	@for i in {1..3}; do \
+	@bash -c 'for i in {1..3}; do \
 		printf "\033[1;35mSweeping...\033[0m\n"; \
 		sleep 0.5; \
-	done
+	done'
 	@printf "\033[1;32mCleanup complete! 🧹\033[0m\n\n"
 	@sleep 0.5
 	@printf "\033[1;34mAll done! The workspace is clean.\033[0m\n"
