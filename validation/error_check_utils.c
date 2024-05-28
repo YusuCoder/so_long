@@ -6,11 +6,23 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:57:09 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/05/26 16:30:23 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:21:35 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
+
+size_t ft_arrlen(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
 int map_is_empty (char *str)
 {

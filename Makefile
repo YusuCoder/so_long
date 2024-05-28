@@ -19,7 +19,10 @@ SRCS				:=	main.c \
 					validation/error_check_utils.c \
 					validation/error_check.c \
 					validation/error_free.c \
-					validation/map_validation.c
+					validation/map_validation.c \
+					validation/map_check.c \
+					validation/struct.c \
+					validation/indexing.c \
 
 OBJS				:= $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
 

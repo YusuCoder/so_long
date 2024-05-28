@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_free.c                                       :+:      :+:    :+:   */
+/*   indexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/26 12:22:57 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/05/28 16:02:28 by ryusupov         ###   ########.fr       */
+/*   Created: 2024/05/28 16:01:10 by ryusupov          #+#    #+#             */
+/*   Updated: 2024/05/28 16:01:35 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
 
-int	free_array(void *str)
+t_ryusupov	*p_and_e_index(char **str, char target)
 {
-	free(str);
-	return (0);
-}
+	t_ryusupov	*index;
 
-void	error_exit(const char *error_message)
-{
-	ft_printf("%s\n", error_message);
-	exit(EXIT_FAILURE);
-}
-
-void	free_map_data(t_map_data *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
+	index = (t_ryusupov *)malloc(sizeof(t_ryusupov));
+	if (!index)
+		return (NULL);
+	index->y = 0;
+	index->x = 0;
+	while (str[index->x] != NULL)
 	{
-		free(map->movements[i]);
-		i++;
+		index->y = 0;
+		while (str[index->x][index->y] != 0)
+		{
+			if (str[index->x][index->y] == target)
+				return (index);
+			index->y++;
+		}
+		index->x++;
 	}
-	free(map->map);
-	free(map);
+	free(index);
+	return (NULL);
 }

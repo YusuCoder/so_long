@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
-/*   Updated: 2024/05/26 16:30:32 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/28 20:02:34 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ static int	wrong_file_error(char *name)
 int	map_validation(char *input)
 {
 	char	*map_contents;
+	t_map_data *map;
 
 	map_contents = NULL;
-	// t_map_data *map;
+	map = NULL;
 	if (wrong_file_error(input))
 		return (1);
 	map_contents = check_map_contetns(input);
@@ -69,7 +70,8 @@ int	map_validation(char *input)
 		return (1);
 	if (check_components(map_contents))
 		return (1);
-	// if (invalid_map(map->map))
-	// 	return (map_error(map));
+	map = initialize_map(map_contents);
+	if (map_not_valid(map->map))
+		return(1);
 	return (0);
 }
