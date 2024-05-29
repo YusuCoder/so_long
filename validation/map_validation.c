@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
-/*   Updated: 2024/05/28 20:02:34 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:26:44 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ static int	wrong_file_error(char *name)
 
 	if ((fd = open(name, O_RDONLY)) == -1)
 	{
-		ft_printf("Error opening file!\n");
-		return (1);
+		ft_printf(COLOR_RED"Error! No such file! 🤨\n"RESET);
+		exit(EXIT_FAILURE);
 	}
 	close(fd);
 	size = ft_strlen(name);
 	if (size < 4 || ft_strcmp(name + size - 4, ".ber") != 0)
 	{
 		ft_printf("Error! Wrong filename!\n");
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
@@ -71,6 +71,7 @@ int	map_validation(char *input)
 	if (check_components(map_contents))
 		return (1);
 	map = initialize_map(map_contents);
+	// print_map_data(map);
 	if (map_not_valid(map->map))
 		return(1);
 	return (0);

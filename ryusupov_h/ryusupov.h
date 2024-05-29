@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/05/28 19:57:27 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:27:40 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_move_info
 typedef struct s_map_data
 {
 	char				**map;
+    int					width;
+    int					height;
 	struct s_ryusupov	*movements[5];
 	struct s_ryusupov	*P;
 	struct s_ryusupov	*E;

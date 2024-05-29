@@ -1,6 +1,6 @@
 #include "../ryusupov_h/ryusupov.h"
 
-int	initialize_P_and_E(t_map_data *map)
+static int	initialize_P_and_E(t_map_data *map)
 {
 	map->P = p_and_e_index(map->map, 'P');
 	if (!map->P)
@@ -15,7 +15,7 @@ int	initialize_P_and_E(t_map_data *map)
 	return (1);
 }
 
-void	initialize_movements(t_map_data *map)
+static void	initialize_movements(t_map_data *map)
 {
 	map->movements[0]->x = 0;
 	map->movements[0]->y = -1;
@@ -27,7 +27,7 @@ void	initialize_movements(t_map_data *map)
 	map->movements[3]->y = 0;
 }
 
-int	allocate_movements(t_map_data *map)
+static int	allocate_movements(t_map_data *map)
 {
 	int	i;
 	int	j;
@@ -52,7 +52,6 @@ int	allocate_movements(t_map_data *map)
 	return (1);
 }
 
-// Function to initialize map
 t_map_data	*initialize_map(char *str)
 {
 	t_map_data	*map;
