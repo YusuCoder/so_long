@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/05/29 13:27:40 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:21:59 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_game
 
 /*-------------Function declarations-------------*/
 int						free_array(void *str);
-int						map_is_empty(char *str);
+void					map_is_empty(char *str);
 int						not_component(char c);
 int						count_check(char *str, char component);
 char					*check_map_contetns(char *str);

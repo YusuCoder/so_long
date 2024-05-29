@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:57:09 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/05/28 18:21:35 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:40:24 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ size_t ft_arrlen(char **str)
 	return (i);
 }
 
-int map_is_empty (char *str)
+void map_is_empty (char *str)
 {
 	if (str[0] == '\0')
 		{
-			ft_printf("Oops! file is empty!\n");
+			ft_printf(COLOR_RED"Oops! file is empty! 🙊\n"RESET);
 			free(str);
-			return (1);
+			exit(EXIT_FAILURE);
 		}
-	return (0);
 }
 
 int	not_component(char c)
