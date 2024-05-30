@@ -77,3 +77,5 @@ void					free_content(void *node);
 size_t					ft_arrlen(char **str);
 t_ryusupov				*p_and_e_index(char **str, char target);
 t_map_data				*initialize_map(char *str);
+t_ryusupov 				calculated_way(t_ryusupov *p, t_ryusupov *way);
+int 					valid_way(t_ryusupov pos, t_map_data **str);

@@ -34,6 +34,19 @@ void map_is_empty (char *str)
 		}
 }
 
+int is_component(char *c)
+{
+	int i;
+	
+	i = 0;
+	while (c[i])
+	{
+		if ((c[i] == 'P' || c[i] == 'E' || c[i] == 'C'))
+			return (1);
+		return (0);
+	}
+}
+
 int	not_component(char c)
 {
 	return !(c == 'C' || c == 'P' || c == 'E'|| c == '\n' || c == '1' || c == '0');

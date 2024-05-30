@@ -12,6 +12,23 @@
 
 #include "../ryusupov_h/ryusupov.h"
 
+void step_back(t_map_data **str)
+{
+    t_ryusupov *temp;
+
+    ft_lstadd_front(&(*str)->already_visited_index, ft_lstnew((*str)->P));
+    if (!(*str)->visiting_info)
+    {
+        (*str)->map_loop = 1;
+        return ;
+    }
+    temp = (*str)->visiting_info;
+    (*str)->P = (*str)->visiting_info->position;
+    (*str)->visiting_info = (*str)->visiting_info->next;
+    temp->next = NULL;
+    free(temp);
+}
+
 static void way_check(t_map_data *str)
 {
     int i;
@@ -53,4 +70,5 @@ int e_c_not_reachable(t_map_data *str)
 
     return (0);
 }
+
 
