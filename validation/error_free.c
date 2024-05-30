@@ -18,6 +18,14 @@ int	free_array(void *str)
 	return (0);
 }
 
+void	free_content(void *node)
+{
+	t_ryusupov	*temp;
+
+	temp = (t_ryusupov *)node;
+	free(temp);
+}
+
 void	error_exit(const char *error_message)
 {
 	ft_printf("%s\n", error_message);

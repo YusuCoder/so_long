@@ -69,5 +69,6 @@ int	map_validation(char *input)
 	map = initialize_map(map_contents);
 	if (map_not_valid(map->map))
 		return(1);
+	not_reachable(map);
 	return (0);
 }

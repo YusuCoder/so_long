@@ -44,6 +44,8 @@ typedef struct s_map_data
 	struct s_move_info	*visiting_info;
 	struct s_move_info	*already_visited_index;
 	int					map_loop;
+	char				p_move;
+
 
 }						t_map_data;
 
@@ -71,6 +73,7 @@ void					error_exit(const char *error_message);
 int						map_validation(char *input);
 int						map_not_valid(char **str);
 void					free_map_data(t_map_data *map);
+void					free_content(void *node);
 size_t					ft_arrlen(char **str);
 t_ryusupov				*p_and_e_index(char **str, char target);
 t_map_data				*initialize_map(char *str);
