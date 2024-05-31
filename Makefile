@@ -23,6 +23,8 @@ SRCS				:=	main.c \
 					validation/map_check.c \
 					validation/struct.c \
 					validation/indexing.c \
+					validation/e_c_not_reachable.c \
+					validation/way_check_utils.c
 
 OBJS				:= $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
 

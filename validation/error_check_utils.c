@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:57:09 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/05/29 15:40:24 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:31:05 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void map_is_empty (char *str)
 int is_component(char *c)
 {
 	int i;
-	
+
 	i = 0;
 	while (c[i])
 	{
 		if ((c[i] == 'P' || c[i] == 'E' || c[i] == 'C'))
 			return (1);
-		return (0);
 	}
+	return (0);
 }
 
 int	not_component(char c)

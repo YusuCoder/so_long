@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/05/29 17:21:59 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:01:02 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_move_info
 	void				*position;
 	int					x;
 	int					y;
-	struct s_info		*next;
+	void				*content;
+	struct s_move_info	*next;
 }						t_move_info;
 typedef struct s_map_data
 {
@@ -45,7 +46,6 @@ typedef struct s_map_data
 	struct s_move_info	*already_visited_index;
 	int					map_loop;
 	char				p_move;
-
 
 }						t_map_data;
 
@@ -79,3 +79,8 @@ t_ryusupov				*p_and_e_index(char **str, char target);
 t_map_data				*initialize_map(char *str);
 t_ryusupov 				calculated_way(t_ryusupov *p, t_ryusupov *way);
 int 					valid_way(t_ryusupov pos, t_map_data **str);
+int 					e_c_not_reachable(t_map_data *str);
+/* void 					set_map(t_map_data **str); */
+int 					is_component(char *c);
+void 					move_player(t_ryusupov *pos, t_map_data **str);
+void					free_list(t_move_info **lst, void (*del)(void *));

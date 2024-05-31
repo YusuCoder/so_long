@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
-/*   Updated: 2024/05/29 18:00:26 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:28:13 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	map_validation(char *input)
 	map = initialize_map(map_contents);
 	if (map_not_valid(map->map))
 		return(1);
-	not_reachable(map);
+	e_c_not_reachable(map);
 	return (0);
 }

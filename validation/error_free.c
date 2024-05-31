@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:22:57 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/05/28 16:02:28 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:14:21 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,32 @@ void	free_map_data(t_map_data *map)
 	}
 	free(map->map);
 	free(map);
+}
+void	delete_node(t_move_info *lst, void (*del)(void *))
+{
+	if (!lst)
+	{
+		return ;
+	}
+	del(lst->content);
+	free(lst);
+}
+
+void	free_list(t_move_info **lst, void (*del)(void *))
+{
+	t_move_info	*i;
+	t_move_info	*nn;
+
+	if (!*lst)
+	{
+		return ;
+	}
+	i = *lst;
+	while (i)
+	{
+		nn = i->next;
+		delete_node(i, del);
+		i = nn;
+	}
+	*lst = NULL;
 }
