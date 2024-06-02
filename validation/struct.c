@@ -35,7 +35,7 @@ static int	allocate_movements(t_map_data *map)
 	i = 0;
 	while (i < 4)
 	{
-		map->movements[i] = (t_ryusupov *)malloc(sizeof(t_ryusupov));
+		map->movements[i] = (t_move_info *)malloc(sizeof(t_move_info));
 		if (!map->movements[i])
 		{
 			j = 0;

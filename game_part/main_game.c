@@ -6,13 +6,17 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 14:05:22 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/05/28 19:14:48 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:27:18 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../ryusupov_h/ryusupov.h"
+#include "../ryusupov_h/ryusupov.h"
 
-// void	main_game(char *str)
-// {
+void	start_game(char *str)
+{
+	t_game	*info;
 
-// }
+	init_game(&info, str);
+	// return ;
+	create_map(&info);
+}

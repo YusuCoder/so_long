@@ -6,13 +6,13 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:05:34 by rustam            #+#    #+#             */
-/*   Updated: 2024/05/31 20:20:51 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:17:12 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
 
-// int valid_way(t_ryusupov *pos, t_map_data **str)
+// int valid_way(t_move_info *pos, t_map_data **str)
 // {
 //     if (first_time(&pos, (*str)->already_visited_index) || first_time(&pos,
 // (*str)->visiting_info))
@@ -36,13 +36,13 @@
 //     (*str)->p_move = 1;
 // }
 
-// void copy_coords(t_ryusupov **dst, t_ryusupov **src)
+// void copy_coords(t_move_info **dst, t_move_info **src)
 // {
 //     (*dst)->x = (*src)->x;
 //     (*dst)->y = (*src)->y;
 // }
 
-// static int	same_index(t_ryusupov *p, t_ryusupov *e)
+// static int	same_index(t_move_info *p, t_move_info *e)
 // {
 // 	if (p == NULL || e == NULL)
 // 	{
@@ -62,11 +62,11 @@ static int	not_wall(char c)
 	return (0);
 }
 
-void	move_player(t_ryusupov *pos, t_map_data **str)
+void	move_player(t_move_info *pos, t_map_data **str)
 {
-	t_ryusupov	*lst;
+	t_move_info	*lst;
 
-	lst = (t_ryusupov *)malloc(sizeof(t_ryusupov));
+	lst = (t_move_info *)malloc(sizeof(t_move_info));
 	lst->x = (*str)->P->x;
 	lst->y = (*str)->P->y;
 	ft_lstadd_front((t_ryusupov **)&(*str)->visiting_info, ft_lstnew(lst));
@@ -76,7 +76,7 @@ void	move_player(t_ryusupov *pos, t_map_data **str)
 	(*str)->p_move = 1;
 }
 
-static int same_index(t_ryusupov *p, t_ryusupov *e)
+static int same_index(t_move_info *p, t_move_info *e)
 {
     if (p == NULL || e == NULL)
     {
@@ -89,7 +89,7 @@ static int same_index(t_ryusupov *p, t_ryusupov *e)
     return (0);
 }
 
-static int first_time(t_ryusupov *pos, t_move_info *node)
+static int first_time(t_move_info *pos, t_move_info *node)
 {
     t_move_info *index;
 
@@ -118,7 +118,7 @@ static int first_time(t_ryusupov *pos, t_move_info *node)
     }
     return (0);
 }
-// static int	first_time(t_ryusupov *pos, t_move_info *node)
+// static int	first_time(t_move_info *pos, t_move_info *node)
 // {
 // 	t_move_info	*index;
 
@@ -136,7 +136,7 @@ static int first_time(t_ryusupov *pos, t_move_info *node)
 // 	return (0);
 // }
 
-int	valid_way(t_ryusupov pos, t_map_data **str)
+int	valid_way(t_move_info pos, t_map_data **str)
 {
 	if (!first_time(&pos, (*str)->already_visited_index) && !first_time(&pos, (*str)->visiting_info))
 	{
@@ -146,9 +146,9 @@ int	valid_way(t_ryusupov pos, t_map_data **str)
 	return 0;
 }
 
-t_ryusupov	calculated_way(t_ryusupov *p, t_ryusupov *way)
+t_move_info	calculated_way(t_move_info *p, t_move_info *way)
 {
-	t_ryusupov	result;
+	t_move_info	result;
 
 	result.x = p->x + way->x;
 	result.y = p->y + way->y;

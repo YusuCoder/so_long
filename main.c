@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:31 by mac               #+#    #+#             */
-/*   Updated: 2024/05/31 14:09:45 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/02 16:22:48 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 		if (!map_validation(argv[1]))
 		{
 			ft_printf("Success!\n");
-			// start_game(argv[1]);
+			start_game(argv[1]);
 		}
 		else
 		{

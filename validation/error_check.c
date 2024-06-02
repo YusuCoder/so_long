@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:04:59 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/05/26 16:30:19 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/02 11:01:41 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ char *check_map_contetns(char *str)
 		exit(EXIT_FAILURE);
 	}
 	// ft_printf(map);
-	close(fd);
-	return (map);
+		close(fd);
+		return (map);
 }
