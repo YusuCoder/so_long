@@ -6,25 +6,24 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/06/05 23:14:48 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 00:59:23 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define WIDTH 7100
-#define HEIGHT 7100
-# define IMG_W 71
-# define IMG_H 71
+#define WIDTH 7000
+#define HEIGHT 7000
+# define IMG_W 70
+# define IMG_H 70
 # define FRAME 4
 # define MAX_SIZE 1024
 /*-------PNG Images--------*/
-# define WALL "./assets/area/wall.png"
-# define GROUND "./assets/area/water.png"
-# define GROUND1 "./assets/area/water_2.png"
+# define WALL "./assets/area/wall_4.png"
+# define GROUND "./assets/area/water_1.png"
+# define GROUND1 "./assets/area/water_1.png"
 # define PLAYER "./assets/player/player_right.png"
-# define EXIT_START "./assets/exit/exit_1.png"
+# define EXIT_START "./assets/exit/exit_3.png"
 # define EXIT_FINAL "./assets/exit/final.png"
-# define COLLECTABLE "./assets/collectable/C.png"
-
+# define COLLECTABLE "./assets/collectable/collect_1.png"
 /* STANDARD LIBRARIES */
 #include <fcntl.h>
 #include <limits.h>
@@ -35,7 +34,6 @@
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "./libft/libft.h"
 #include "./printf/ft_printf.h"
-
 /*-------STRUCTS--------*/
 typedef struct s_position
 {
