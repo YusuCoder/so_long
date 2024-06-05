@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:31 by mac               #+#    #+#             */
-/*   Updated: 2024/06/02 16:22:48 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/05 04:52:40 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 int main(int argc, char **argv)
 {
+	t_game	map;
+
 	if (argc == 2)
 	{
+		map.fd = open(argv[1], O_RDONLY);
+		if (map.fd < 0 || map.fd == 0)
+		{
+			ft_printf("error!\n");
+			exit(EXIT_FAILURE);
+		}
 		if (!map_validation(argv[1]))
 		{
 			ft_printf("Success!\n");
-			start_game(argv[1]);
+			game_init(argv[1]);
 		}
 		else
 		{

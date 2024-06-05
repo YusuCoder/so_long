@@ -22,15 +22,6 @@ SRCS				:=	main.c \
 					validation/map_validation.c \
 					validation/map_check.c \
 					validation/struct.c \
-					validation/indexing.c \
-					validation/e_c_not_reachable.c \
-					validation/way_check_utils.c \
-					game_part/main_game.c \
-					game_part/initialization.c \
-					game_part/textures.c \
-					game_part/init_utils.c \
-					game_part/init_utils2.c \
-					game_part/free_exit.c
 
 OBJS				:= $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
 

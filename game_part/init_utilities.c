@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   indexing.c                                         :+:      :+:    :+:   */
+/*   init_utilities.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 16:01:10 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/02 15:33:33 by ryusupov         ###   ########.fr       */
+/*   Created: 2024/06/05 04:55:04 by ryusupov          #+#    #+#             */
+/*   Updated: 2024/06/05 05:03:11 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
 
-t_move_info	*p_and_e_index(char **str, char target)
+void	map_length(t_game *map, char *line, int i)
 {
-	t_move_info	*index;
+	int	len;
 
-	index = (t_move_info *)malloc(sizeof(t_move_info));
-	if (!index)
-		return (NULL);
-	index->y = 0;
-	index->x = 0;
-	while (str[index->x] != NULL)
+	len = ft_arrlen(line);
+	if (i == 0)
+		map->map.width = len;
+	if (len >= WIDTH / IMG_W)
+		free_map_data("Error! File is too large!\n", map);
+	return ;
+}
+
+void	allocate_mem(t_game *game)
+{
+	if (!game->map.map)
 	{
-		index->y = 0;
-		while (str[index->x][index->y] != 0)
+		game->map.map = (char **)malloc(sizeof(char *) * 270);
+		if (!game->map.map)
 		{
-			if (str[index->x][index->y] == target)
-				return (index);
-			index->y++;
+			ft_printf("Error!\n");
+			exit(EXIT_FAILURE);
 		}
-		index->x++;
+		ft_memset(game->map.map, 0, 270);
 	}
-	free(index);
-	return (NULL);
 }

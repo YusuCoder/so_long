@@ -1,84 +1,28 @@
 #include "../ryusupov_h/ryusupov.h"
 
-static int	initialize_P_and_E(t_map_data *map)
+void	map_length(t_game *map, char *line, int i)
 {
-	map->P = p_and_e_index(map->map, 'P');
-	if (!map->P)
-	{
-		return (0);
-	}
-	map->E = p_and_e_index(map->map, 'E');
-	if (!map->E)
-	{
-		return (0);
-	}
-	return (1);
+	int	len;
+
+	len = ft_arrlength(line);
+	if (i == 0)
+		map->map.width = len;
+	if (len >= WIDTH / IMG_W)
+		free_map_data("Error! File is too large!\n", map);
+	return ;
 }
 
-static void	initialize_movements(t_map_data *map)
+void	allocate_mem(t_game *game)
 {
-	map->movements[0]->x = 0;
-	map->movements[0]->y = -1;
-	map->movements[1]->x = 0;
-	map->movements[1]->y = 1;
-	map->movements[2]->x = 1;
-	map->movements[2]->y = 0;
-	map->movements[3]->x = -1;
-	map->movements[3]->y = 0;
-}
-
-static int	allocate_movements(t_map_data *map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 4)
+	if (!game->map.map)
 	{
-		map->movements[i] = (t_move_info *)malloc(sizeof(t_move_info));
-		if (!map->movements[i])
+		game->map.map = (char **)malloc(sizeof(char *) * 270);
+		if (!game->map.map)
 		{
-			j = 0;
-			while (j < i)
-			{
-				free(map->movements[j]);
-				j++;
-			}
-			return (0);
+			ft_printf("Error!\n");
+			exit(EXIT_FAILURE);
 		}
-		i++;
+		ft_memset(game->map.map, 0, 270);
 	}
-	map->movements[4] = NULL;
-	return (1);
-}
-
-t_map_data	*initialize_map(char *str)
-{
-	t_map_data	*map;
-
-	map = (t_map_data *)malloc(sizeof(t_map_data));
-	if (!map)
-		return (NULL);
-	if (!allocate_movements(map))
-	{
-		free(map);
-		return (NULL);
-	}
-	initialize_movements(map);
-	map->visiting_info = NULL;
-	map->already_visited_index = NULL;
-	map->map = ft_split(str, '\n');
-	if (!map->map)
-	{
-		free_map_data(map);
-		return (NULL);
-	}
-	if (!initialize_P_and_E(map))
-	{
-		free_map_data(map);
-		return (NULL);
-	}
-	map->map_loop = 0;
-	return (map);
 }
 

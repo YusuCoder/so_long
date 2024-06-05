@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
-/*   Updated: 2024/06/02 16:35:21 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/05 04:47:42 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static void	check_components(char *str)
 		while (str[i])
 		{
 			if (not_component(str[i]) == 1)
-				error_exit(COLOR_RED"Error! Invalid component found!"RESET);
+				error_exit(COLOR_RED "Error! Invalid component found!" RESET);
 			i++;
 		}
 	}
 	else
-		error_exit(COLOR_RED"There are missing component!"RESET);
+		error_exit(COLOR_RED "There are missing component!" RESET);
 }
 
 static void	wrong_file_error(char *name)
@@ -43,7 +43,7 @@ static void	wrong_file_error(char *name)
 
 	if ((fd = open(name, O_RDONLY)) == -1)
 	{
-		ft_printf(COLOR_RED"Error! No such file! 🤨\n"RESET);
+		ft_printf(COLOR_RED "Error! No such file! 🤨\n" RESET);
 		exit(EXIT_FAILURE);
 	}
 	close(fd);
@@ -57,18 +57,12 @@ static void	wrong_file_error(char *name)
 
 int	map_validation(char *input)
 {
-	char	*map_contents;
-	t_map_data *map;
+	char			*map_contents;
 
-	map_contents = NULL;
-	map = NULL;
 	wrong_file_error(input);
 	map_contents = check_map_contetns(input);
 	map_is_empty(map_contents);
 	check_components(map_contents);
-	map = initialize_map(map_contents);
-	if (map_not_valid(map->map))
-		return(1);
-	// e_c_not_reachable(map);
+	// map_not_valid(input);
 	return (0);
 }
