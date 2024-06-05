@@ -19,9 +19,15 @@ SRCS				:=	main.c \
 					validation/error_check_utils.c \
 					validation/error_check.c \
 					validation/error_free.c \
-					validation/map_validation.c \
+					validation/file_validation.c \
 					validation/map_check.c \
-					validation/struct.c \
+					game_part/main_game.c \
+					game_part/init_struct_map.c \
+					game_part/init_utilities.c \
+					game_part/flood_fill.c \
+					game_part/img_textures.c \
+					game_part/mlx_init.c \
+					game_part/components.c
 
 OBJS				:= $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
 

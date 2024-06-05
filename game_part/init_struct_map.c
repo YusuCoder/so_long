@@ -6,11 +6,32 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 04:53:32 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/05 05:04:17 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:13:12 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
+
+void	init_layer(t_game *game)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	y = 0;
+	while (game->map.map[y])
+	{
+		x = 0;
+		while (game->map.map[y][x])
+		{
+			map_struct(game->map.map[y][x], game, x, y);
+			check_walls(x, y, game);
+			x++;
+		}
+		y++;
+	}
+	prepare_map_to_fill(game);
+	flood_loop(game, 'X');
+}
 
 void	init_map(t_game *game)
 {
@@ -18,6 +39,7 @@ void	init_map(t_game *game)
 	int		i;
 
 	line = get_next_line(game->fd);
+	map_is_empty(line);
 	i = 0;
 	while (line && !(line[0] == '\n'))
 	{

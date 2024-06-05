@@ -6,28 +6,13 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:57:09 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/05 03:35:07 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:58:08 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
 
 size_t ft_arrlen(char *str)
-{
-    size_t count = 0;
-    char *ptr = str;
-
-    while (*ptr)
-    {
-        if (*ptr == '\n')
-            count++;
-        ptr++;
-    }
-    return count + 1;
-}
-
-
-size_t ft_arrlength(char *str)
 {
 	size_t	i;
 
@@ -82,4 +67,15 @@ int	count_check(char *str, char component)
 		i++;
 	}
 	return (counted);
+}
+size_t 		ft_arrlength(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
 }

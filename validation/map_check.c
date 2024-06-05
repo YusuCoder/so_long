@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:31:22 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/05 04:32:16 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/05 20:49:42 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@
 
 // 	if (len == 0)
 // 		return (0);
-// 	size = ft_strlenn(*str);
+// 	size = ft_strlen(*str);
 // 	// printf("%zu\n", len);
 // 	i = 1;
 // 	while (i < len)
 // 	{
-// 		if (ft_strlenn((*str) + i) != size)
+// 		if (ft_strlen((*str)) != size)
 // 			return (1);
 // 		i++;
 // 	}
@@ -86,7 +86,7 @@
 // 	}
 // 	close(fd);
 // 	len = ft_arrlen(str);
-// 	printf("%u\n", len);
+// 	// printf("%u\n", len);
 // 	if (incorrect_struct(&str, len) || top_and_bottom(str)
 // 		|| vertical_walls(&str, len))
 // 	{

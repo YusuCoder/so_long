@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/06/05 05:03:29 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/05 23:14:48 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@
 # define IMG_H 71
 # define FRAME 4
 # define MAX_SIZE 1024
-
-# define MAP_CONTAINS	"PEC01"
-# define COMPONENTS		"CEP"
-# define FILL_VALUE		"1X"
+/*-------PNG Images--------*/
+# define WALL "./assets/area/wall.png"
+# define GROUND "./assets/area/water.png"
+# define GROUND1 "./assets/area/water_2.png"
+# define PLAYER "./assets/player/player_right.png"
+# define EXIT_START "./assets/exit/exit_1.png"
+# define EXIT_FINAL "./assets/exit/final.png"
+# define COLLECTABLE "./assets/collectable/C.png"
 
 /* STANDARD LIBRARIES */
 #include <fcntl.h>
@@ -27,15 +31,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
-#include <stddef.h>
 /* SUBMODULE LIBRARIES */
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "./libft/libft.h"
 #include "./printf/ft_printf.h"
 
 /*-------STRUCTS--------*/
-
 typedef struct s_position
 {
 	int				x;
@@ -43,10 +44,20 @@ typedef struct s_position
 	unsigned int	move;
 }				t_position;
 
+typedef struct s_multi
+{
+	mlx_image_t	*img;
+	int			x;
+	int			y;
+}				t_multi;
+
 typedef struct s_img
 {
 	mlx_image_t	*ground[2];
 	mlx_image_t	*walls;
+	t_multi		E[2];
+	t_multi		P;
+	t_multi		C[100];
 }				t_img;
 
 typedef struct s_map
@@ -61,6 +72,15 @@ typedef struct s_map
 	int		wall;
 	int		ground;
 }			t_map;
+
+typedef struct s_move_info
+{
+	void				*position;
+	int					x;
+	int					y;
+	void				*content;
+	struct s_move_info	*next;
+}						t_move_info;
 
 typedef struct s_game
 {
@@ -88,12 +108,26 @@ void					free_map(char **map);
 void					error_exit(const char *error_message);
 size_t					ft_arrlen(char *str);
 int 					is_component(char *c);
+void					check_walls(int x, int y, t_game *map);
 /*-------------game_initialization---------------*/
 void					init_values(t_game *map);
 void					init_map(t_game *game);
-size_t 					ft_arrlength(char *str);
-void					game_init(const char **argv);
+size_t 					ft_arrlength(char **str);
+void					game_init(t_game *map);
 void					init_values(t_game *map);
 void					allocate_mem(t_game *game);
 void					map_length(t_game *map, char *line, int i);
-
+void					init_layer(t_game *game);
+void					prepare_map_to_fill(t_game *str);
+void					flood_loop(t_game *map, char c);
+void					map_struct(char c, t_game *map, int x, int y);
+int						map_not_valid(char *map);
+void					map_struct(char c, t_game *map, int x, int y);
+void					mlx_window_init(t_game *map);
+void					set_textures(t_game *map);
+void					set_img(t_game *map, mlx_image_t **img, char *path);
+void					set_ground_texture(t_game *map);
+void					set_layer_texture(t_game *map);
+void					player(t_game *map, int x, int y);
+void					collectable(t_game *map, int x, int y, int *count);
+void					exit_exit(t_game *map, int x, int y);
