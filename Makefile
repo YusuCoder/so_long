@@ -21,13 +21,13 @@ SRCS				:=	main.c \
 					validation/error_free.c \
 					validation/file_validation.c \
 					validation/map_check.c \
-					game_part/main_game.c \
 					game_part/init_struct_map.c \
 					game_part/init_utilities.c \
 					game_part/flood_fill.c \
 					game_part/img_textures.c \
 					game_part/mlx_init.c \
-					game_part/components.c
+					game_part/components.c \
+					game_part/p_move.c
 
 OBJS				:= $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
 

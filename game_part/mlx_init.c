@@ -6,11 +6,23 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:17:33 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/05 23:04:32 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 04:36:19 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
+
+void	move_hook(mlx_key_data_t key, void *act)
+{
+	t_game	*map;
+	int		*x;
+	int		*y;
+
+	map = act;
+	y = &map->img.P.img->instances[0].y;
+	x = &map->img.P.img->instances[0].x;
+	p_move(key, *y, *x, map);
+}
 
 void	set_textures(t_game *map)
 {

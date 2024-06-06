@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/06/06 00:59:23 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 03:50:54 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,3 +129,6 @@ void					set_layer_texture(t_game *map);
 void					player(t_game *map, int x, int y);
 void					collectable(t_game *map, int x, int y, int *count);
 void					exit_exit(t_game *map, int x, int y);
+/*--------------MLX_MOVEMENT_FUNCTIONS--------------*/
+void					move_hook(mlx_key_data_t key, void *act);
+void					p_move(mlx_key_data_t key, int y, int x, t_game *map);
