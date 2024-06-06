@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:31:22 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/05 20:49:42 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:20:41 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,45 @@
 // static int	incorrect_struct(char **str, size_t len)
 // {
 // 	size_t			size;
-// 	unsigned int	i;
+// 	size_t			i;
 
 // 	if (len == 0)
 // 		return (0);
-// 	size = ft_strlen(*str);
+// 	size = ft_strlen(str[0]);
 // 	// printf("%zu\n", len);
 // 	i = 1;
 // 	while (i < len)
 // 	{
-// 		if (ft_strlen((*str)) != size)
+// 		if (ft_strlen(str[i]) != size)
 // 			return (1);
 // 		i++;
 // 	}
 // 	return (0);
 // }
 
+// size_t ft_arrlenn(char *str)
+// {
+// 	size_t	i;
+// 	size_t	counter;
+
+// 	i = 0;
+// 	counter = 0;
+// 	while (str[i])
+// 	{
+// 		if (str[i] == '\n')
+// 		{
+// 			counter++;
+// 			str[i] = '\0';
+// 		}
+// 		i++;
+// 	}
+// 	return (counter);
+// }
+
 // int	map_not_valid(char *map)
 // {
 // 	int				fd;
-// 	unsigned int	len;
+// 	unsigned int	len = 0;
 // 	char			*str;
 // 	ssize_t			bytes_read;
 
@@ -85,7 +104,7 @@
 // 		return (1);
 // 	}
 // 	close(fd);
-// 	len = ft_arrlen(str);
+// 	len = ft_arrlenn(str);
 // 	// printf("%u\n", len);
 // 	if (incorrect_struct(&str, len) || top_and_bottom(str)
 // 		|| vertical_walls(&str, len))

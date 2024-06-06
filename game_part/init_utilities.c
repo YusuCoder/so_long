@@ -6,11 +6,19 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 04:55:04 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/06 04:50:37 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:31:15 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
+
+void c_collect(t_game *map, int x, int y)
+{
+	if (check_and_update_map(map, x, y))
+	{
+		process_collectible(map, x, y);
+	}
+}
 
 void	map_length(t_game *map, char *line, int i)
 {
