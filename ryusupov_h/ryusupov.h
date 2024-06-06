@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/06/06 18:29:03 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:21:37 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,4 +135,5 @@ void					move_hook(mlx_key_data_t key, void *act);
 void					p_move(mlx_key_data_t key, int y, int x, t_game *map);
 int 					check_and_update_map(t_game *map, int x, int y);
 void 					process_collectible(t_game *map, int x, int y);
-void					c_collect(t_game *map, int x, int y);
+void					c_collect_and_finish(t_game *map, int x, int y);
+void					no_c_left(t_game *map, int x, int y);

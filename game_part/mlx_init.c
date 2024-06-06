@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:17:33 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/06 17:34:02 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:21:26 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	move_hook(mlx_key_data_t key, void *act)
 	y = &map->img.P.img->instances[0].y;
 	x = &map->img.P.img->instances[0].x;
 	p_move(key, *y, *x, map);
-	c_collect(map, *x, *y);
+	c_collect_and_finish(map, *x, *y);
 }
 
 void	set_textures(t_game *map)

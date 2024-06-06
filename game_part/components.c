@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:27:14 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/06 18:27:01 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:43:49 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,31 +78,3 @@ void process_collectible(t_game *map, int x, int y)
 		i++;
 	}
 }
-// void	c_collect(t_game *map, int x, int y)
-// {
-// 	int	c_raw;
-// 	int	c_column;
-// 	int	i;
-
-// 	c_raw = 0;
-// 	c_column = 0;
-// 	if (map->map.map && map->map.map[y / IMG_H][x / IMG_W] == 'C')
-// 	{
-// 		map->map.map[y / IMG_H][x / IMG_W] = '0';
-// 		i = 0;
-// 		while (i < map->map.C && map->count < map->map.C)
-// 		{
-
-// 			if (map->count >= map->map.C)
-// 				break ;
-// 			c_raw = map->img.C[i].x;
-// 			c_column = map->img.C[i].y;
-// 			if (c_raw == x / IMG_W && c_column == y / IMG_H)
-// 			{
-// 				mlx_delete_image(map->mlx, map->img.C[i].img);
-// 				map->count++;
-// 			}
-// 			i++;
-// 		}
-// 	}
-// }
