@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/06/06 19:21:37 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 01:04:55 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define IMG_H 70
 # define FRAME 4
 # define MAX_SIZE 1024
+# define TOTAL_LEVELS 3
 /*-------PNG Images--------*/
 # define WALL "./assets/area/wall_4.png"
 # define GROUND "./assets/area/water_1.png"
@@ -69,6 +70,7 @@ typedef struct s_map
 	int		E;
 	int		wall;
 	int		ground;
+	int		cc;
 }			t_map;
 
 typedef struct s_move_info
@@ -90,6 +92,9 @@ typedef struct s_game
 	int			count;
 	int			move_count;
 	int			level;
+	int			lvl;
+	char		**levels;
+	int			total_levels;
 	int			finish_game;
 }				t_game;
 
@@ -108,10 +113,10 @@ void					error_exit(const char *error_message);
 size_t					ft_arrlen(char *str);
 int 					is_component(char *c);
 void					check_walls(int x, int y, t_game *map);
+void					delete_all_images(t_game *map);
 /*-------------game_initialization---------------*/
 void					init_values(t_game *map);
 void					init_map(t_game *game);
-size_t 					ft_arrlength(char **str);
 void					game_init(t_game *map);
 void					init_values(t_game *map);
 void					allocate_mem(t_game *game);

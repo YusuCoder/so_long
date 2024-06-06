@@ -27,7 +27,8 @@ SRCS				:=	main.c \
 					game_part/img_textures.c \
 					game_part/mlx_init.c \
 					game_part/components.c \
-					game_part/p_move.c
+					game_part/p_move.c \
+					game_part/free_map.c
 
 OBJS				:= $(patsubst %, $(OBJ_PATH)/%, $(SRCS:.c=.o))
 
