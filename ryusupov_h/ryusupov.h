@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/06/07 17:48:27 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:47:52 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,6 @@ typedef struct s_game
 	int					count;
 	int					move_count;
 	int					level;
-	int					lvl;
-	char				**levels;
-	int					total_levels;
 	int					finish_game;
 }						t_game;
 
