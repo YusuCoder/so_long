@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:23:01 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/06 00:03:39 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 05:03:34 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	set_img(t_game *map, mlx_image_t **img, char *path)
 	if (!*img)
 		free_map_data("Error! Check the texture!\n", map);
 }
+
 static void	set_image_to_window(t_game *map, mlx_image_t *img, int x, int y)
 {
 	mlx_image_to_window(map->mlx, img, x * IMG_W, y * IMG_H);
@@ -35,7 +36,7 @@ static void	set_image_to_window(t_game *map, mlx_image_t *img, int x, int y)
 	}
 }
 
-void		set_ground_texture(t_game *map)
+void	set_ground_texture(t_game *map)
 {
 	int	y;
 	int	x;
@@ -68,7 +69,8 @@ void	set_layer_texture(t_game *map)
 		while (x < map->map.width)
 		{
 			if (map->map.map[y][x] == '1')
-				mlx_image_to_window(map->mlx, map->img.walls, x * IMG_W, y * IMG_H);
+				mlx_image_to_window(map->mlx, map->img.walls, x * IMG_W, \
+					y * IMG_H);
 			else if (map->map.map[y][x] == 'C')
 				collectable(map, x, y, &map->count);
 			else if (map->map.map[y][x] == 'P')

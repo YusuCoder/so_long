@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 01:26:10 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/06 18:05:39 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 05:02:06 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	p_move(mlx_key_data_t key, int y, int x, t_game *map)
 		if (moved)
 		{
 			map->move_count++;
-			ft_printf(COLOR_GREEN"Current move count is: %d\n"RESET, map->move_count);
+			ft_printf(COLOR_GREEN"Current move count is: %d\n"RESET, \
+				map->move_count);
 		}
 	}
 }

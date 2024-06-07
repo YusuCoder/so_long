@@ -6,13 +6,13 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:57:09 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/06 18:46:39 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 04:49:43 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
 
-size_t ft_arrlen(char *str)
+size_t	ft_arrlen(char *str)
 {
 	size_t	i;
 
@@ -26,19 +26,19 @@ size_t ft_arrlen(char *str)
 	return (i);
 }
 
-void map_is_empty (char *str)
+void	map_is_empty(char *str)
 {
 	if (str[0] == '\0')
-		{
-			ft_printf(COLOR_RED"Oops! file is empty! 🙊\n"RESET);
-			free(str);
-			exit(EXIT_FAILURE);
-		}
+	{
+		ft_printf(COLOR_RED "Oops! file is empty! 🙊\n" RESET);
+		free(str);
+		exit(EXIT_FAILURE);
+	}
 }
 
-int is_component(char *c)
+int	is_component(char *c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (c[i])
@@ -51,8 +51,10 @@ int is_component(char *c)
 
 int	not_component(char c)
 {
-	return !(c == 'C' || c == 'P' || c == 'E'|| c == '\n' || c == '1' || c == '0');
+	return (!(c == 'C' || c == 'P' || c == 'E' || c == '\n' || c == '1'
+			|| c == '0'));
 }
+
 int	count_check(char *str, char component)
 {
 	int	i;

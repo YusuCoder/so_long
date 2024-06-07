@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:22:57 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/05 00:55:51 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 04:01:32 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ void	error_exit(const char *error_message)
 	ft_printf("%s\n", error_message);
 	exit(EXIT_FAILURE);
 }
-void	free_map(char	**map)
+
+void	free_map(char **map)
 {
 	int	i;
 
 	if (!map || !*map)
 		return ;
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
 		free(map[i]);
 		i++;
@@ -40,8 +41,6 @@ void	free_map_data(const char *error_message, t_game *map)
 		free_map_contents(map->map.fill, map->map.height);
 	exit(EXIT_FAILURE);
 }
-
-
 
 void	free_map_contents(char **map, int height)
 {

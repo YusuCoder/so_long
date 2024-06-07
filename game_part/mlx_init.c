@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:17:33 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/06 19:21:26 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 05:02:35 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,17 @@ void	set_textures(t_game *map)
 void	mlx_window_init(t_game *map)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	map->mlx = mlx_init(IMG_W * map->map.width, IMG_H * map->map.height, "so_long", true);
+	map->mlx = mlx_init(IMG_W * map->map.width, IMG_H \
+		* map->map.height, "so_long", true);
 	if (!map->mlx)
 		free_map_data(COLOR_RED"Error! Mlx failure!\n"RESET, map);
+}
+
+void	game_init(t_game *map)
+{
+	init_values(map);
+	init_map(map);
+	init_layer(map);
+	mlx_window_init(map);
+	set_textures(map);
 }

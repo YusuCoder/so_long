@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
-/*   Updated: 2024/06/07 00:56:16 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 05:05:57 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,32 @@ void	map_struct(char c, t_game *map, int x, int y)
 void	check_walls(int x, int y, t_game *map)
 {
 	if (map->map.map == NULL || map->map.height == 0)
-		free_map_data(COLOR_RED"Ivalid map!\n"RESET, map);
+		free_map_data(COLOR_RED "Ivalid map!\n" RESET, map);
 	if (map->map.map[0][x] != '1' || map->map.map[y][0] != '1')
 		free_map_data("Invalid map!\n", map);
 	if (map->map.height - 1 >= 0)
 	{
 		if (map->map.map[map->map.height - 1][x] != '1')
-			free_map_data(COLOR_RED"Invalid map!\n"RESET, map);
+			free_map_data(COLOR_RED "Invalid map!\n" RESET, map);
 	}
 	if (map->map.width - 1 >= 0)
 	{
 		if (map->map.map[y][map->map.width - 1] != '1')
-			free_map_data(COLOR_RED"Invalid map!\n"RESET, map);
+			free_map_data(COLOR_RED "Invalid map!\n" RESET, map);
 	}
 }
 
 static void	check_components(char *str)
 {
-	int	C;
-	int	E;
-	int	P;
+	int	c;
+	int	e;
+	int	p;
 	int	i;
 
-	C = count_check(str, 'C');
-	E = count_check(str, 'E');
-	P = count_check(str, 'P');
-	if (P == 1 && E == 1 && C > 0 && C < 500)
+	c = count_check(str, 'C');
+	e = count_check(str, 'E');
+	p = count_check(str, 'P');
+	if (p == 1 && e == 1 && c > 0 && c < 500)
 	{
 		i = 0;
 		while (str[i])
@@ -77,7 +77,8 @@ static void	wrong_file_error(char *name)
 	int	fd;
 	int	size;
 
-	if ((fd = open(name, O_RDONLY)) == -1)
+	fd = open(name, O_RDONLY);
+	if (fd == -1)
 	{
 		ft_printf(COLOR_RED "Error! No such file! 🤨\n" RESET);
 		exit(EXIT_FAILURE);
@@ -86,20 +87,19 @@ static void	wrong_file_error(char *name)
 	size = ft_strlen(name);
 	if (size < 4 || ft_strcmp(name + size - 4, ".ber") != 0)
 	{
-		ft_printf(COLOR_RED"Error! Wrong filename!\n"RESET);
+		ft_printf(COLOR_RED "Error! Wrong filename!\n" RESET);
 		exit(EXIT_FAILURE);
 	}
 }
 
 int	map_validation(char *input)
 {
-	char			*map_contents;
+	char	*map_contents;
 
 	wrong_file_error(input);
 	map_contents = check_map_contetns(input);
 	map_is_empty(map_contents);
 	check_components(map_contents);
-	// map_not_valid(input);
 	free(map_contents);
 	return (0);
 }

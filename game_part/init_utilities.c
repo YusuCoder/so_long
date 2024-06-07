@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 04:55:04 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/07 01:07:34 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 05:02:49 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	no_c_left(t_game *map, int x, int y)
 	{
 		mlx_delete_image(map->mlx, map->img.E[0].img);
 		mlx_image_to_window(map->mlx, map->img.E[1].img, map->img.E[0].x
-				* IMG_W, map->img.E[0].y * IMG_H);
+			* IMG_W, map->img.E[0].y * IMG_H);
 		map->finish_game = 1;
 		map->level++;
 	}
@@ -71,12 +71,24 @@ void	allocate_mem(t_game *game)
 	}
 }
 
-void	game_init(t_game *map)
+void	process_collectible(t_game *map, int x, int y)
 {
-	
-	init_values(map);
-	init_map(map);
-	init_layer(map);
-	mlx_window_init(map);
-	set_textures(map);
+	int	c_raw;
+	int	c_column;
+	int	i;
+
+	i = 0;
+	while (i < map->map.C && map->count < map->map.C)
+	{
+		if (map->count >= map->map.C)
+			break ;
+		c_raw = map->img.C[i].x;
+		c_column = map->img.C[i].y;
+		if (c_raw == x / IMG_W && c_column == y / IMG_H)
+		{
+			mlx_delete_image(map->mlx, map->img.C[i].img);
+			map->count++;
+		}
+		i++;
+	}
 }

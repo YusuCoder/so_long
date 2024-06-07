@@ -6,40 +6,67 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:04:59 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/07 00:46:35 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 05:05:23 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ryusupov_h/ryusupov.h"
 
-static int	get_map_content_size(char *str)
+int	open_file(char *str)
 {
-	int		fd;
+	int	fd;
+
+	fd = open(str, O_RDONLY);
+	return (fd);
+}
+
+int	read_file_content(int fd, int *total_size)
+{
 	char	*mem;
 	int		size;
-	int		total_size;
 
-	total_size = 0;
-	fd = open(str, O_RDONLY);
-	mem = malloc(100);
+	*total_size = 0;
+	mem = malloc(1024);
 	if (!mem)
 	{
-		ft_printf("Malloc error! map_content_size");
 		close(fd);
 		return (0);
 	}
-	while ((size = read(fd, mem, 100)) > 0)
-		total_size = total_size + size;
-	if (size < 0)
-		return (0);
-	close(fd);
+	while (1)
+	{
+		size = read(fd, mem, 1024);
+		if (size < 0)
+		{
+			free(mem);
+			close(fd);
+			return (0);
+		}
+		if (size == 0)
+			break ;
+		*total_size += size;
+	}
 	free(mem);
-	if (size < 0)
-		return (0);
-	return (total_size);
+	return (1);
 }
 
-char *check_map_contetns(char *str)
+int	get_map_content_size(char *str)
+{
+	int	total_size;
+	int	fd;
+
+	fd = open_file(str);
+	if (fd == -1)
+		return (0);
+	if (read_file_content(fd, &total_size))
+	{
+		close(fd);
+		return (total_size);
+	}
+	close(fd);
+	return (0);
+}
+
+char	*check_map_contetns(char *str)
 {
 	int		fd;
 	int		content_size;
