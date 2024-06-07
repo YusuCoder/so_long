@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:47:00 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/07 05:07:52 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:50:42 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	c_delete(t_game *map)
 		{
 			if (map->map.map[y][x] == 'C')
 			{
-				if (img_index < 100 && map->img.C[img_index].img != NULL)
-					mlx_delete_image(map->mlx, map->img.C[img_index].img);
+				if (img_index < 100 && map->img.c[img_index].img != NULL)
+					mlx_delete_image(map->mlx, map->img.c[img_index].img);
 				else
 					ft_printf("Error: Attempt to delete invalid image at (%d, \
 							%d)\n", y, x);
@@ -45,9 +45,9 @@ void	p_g_delete(t_game *map)
 {
 	int	i;
 
-	if (!map->img.P.img)
+	if (!map->img.p.img)
 		return ;
-	mlx_delete_image(map->mlx, map->img.P.img);
+	mlx_delete_image(map->mlx, map->img.p.img);
 	i = 0;
 	while (i < 10)
 	{
@@ -60,7 +60,7 @@ void	delete_all_images(t_game *map)
 {
 	c_delete(map);
 	p_g_delete(map);
-	mlx_delete_image(map->mlx, map->img.E[0].img);
-	mlx_delete_image(map->mlx, map->img.E[1].img);
+	mlx_delete_image(map->mlx, map->img.e[0].img);
+	mlx_delete_image(map->mlx, map->img.e[1].img);
 	mlx_delete_image(map->mlx, map->img.walls);
 }

@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:17:33 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/07 05:02:35 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:17:28 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	move_hook(mlx_key_data_t key, void *act)
 	int		*y;
 
 	map = act;
-	y = &map->img.P.img->instances[0].y;
-	x = &map->img.P.img->instances[0].x;
+	y = &map->img.p.img->instances[0].y;
+	x = &map->img.p.img->instances[0].x;
 	p_move(key, *y, *x, map);
 	c_collect_and_finish(map, *x, *y);
 }

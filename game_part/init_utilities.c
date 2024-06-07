@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 04:55:04 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/07 05:02:49 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:52:16 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	no_c_left(t_game *map, int x, int y)
 	int	tile_x;
 	int	tile_y;
 
-	if (map->count == map->map.C && map->finish_game != 1)
+	if (map->count == map->map.c && map->finish_game != 1)
 	{
-		mlx_delete_image(map->mlx, map->img.E[0].img);
-		mlx_image_to_window(map->mlx, map->img.E[1].img, map->img.E[0].x
-			* IMG_W, map->img.E[0].y * IMG_H);
+		mlx_delete_image(map->mlx, map->img.e[0].img);
+		mlx_image_to_window(map->mlx, map->img.e[1].img, map->img.e[0].x
+			* IMG_W, map->img.e[0].y * IMG_H);
 		map->finish_game = 1;
 		map->level++;
 	}
@@ -78,15 +78,15 @@ void	process_collectible(t_game *map, int x, int y)
 	int	i;
 
 	i = 0;
-	while (i < map->map.C && map->count < map->map.C)
+	while (i < map->map.c && map->count < map->map.c)
 	{
-		if (map->count >= map->map.C)
+		if (map->count >= map->map.c)
 			break ;
-		c_raw = map->img.C[i].x;
-		c_column = map->img.C[i].y;
+		c_raw = map->img.c[i].x;
+		c_column = map->img.c[i].y;
 		if (c_raw == x / IMG_W && c_column == y / IMG_H)
 		{
-			mlx_delete_image(map->mlx, map->img.C[i].img);
+			mlx_delete_image(map->mlx, map->img.c[i].img);
 			map->count++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
-/*   Updated: 2024/06/07 05:05:57 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:54:06 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	map_struct(char c, t_game *map, int x, int y)
 	{
 		map->pos.x = x;
 		map->pos.y = y;
-		map->map.P++;
+		map->map.p++;
 	}
 	if (c == 'C')
-		map->map.C++;
+		map->map.c++;
 	if (c == '0')
 		map->map.ground++;
 	if (c == 'E')
-		map->map.E++;
+		map->map.e++;
 }
 
 void	check_walls(int x, int y, t_game *map)

@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:27:14 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/07 05:07:40 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:49:37 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,30 @@ static void	player_pos(t_multi *data, t_position *pos)
 
 void	player(t_game *map, int x, int y)
 {
-	set_img(map, &map->img.P.img, PLAYER);
-	player_pos(&map->img.P, &map->pos);
+	set_img(map, &map->img.p.img, PLAYER);
+	player_pos(&map->img.p, &map->pos);
 	map->map.map[y][x] = '0';
-	mlx_image_to_window(map->mlx, map->img.P.img, x * IMG_W, y * IMG_H);
+	mlx_image_to_window(map->mlx, map->img.p.img, x * IMG_W, y * IMG_H);
 }
 
 void	collectable(t_game *map, int x, int y, int *count)
 {
-	set_img(map, &map->img.C[*count].img, COLLECTABLE);
-	map->img.C[*count].x = x;
-	map->img.C[*count].y = y;
-	mlx_image_to_window(map->mlx, map->img.C[*count].img, x * IMG_W, y * IMG_H);
+	set_img(map, &map->img.c[*count].img, COLLECTABLE);
+	map->img.c[*count].x = x;
+	map->img.c[*count].y = y;
+	mlx_image_to_window(map->mlx, map->img.c[*count].img, x * IMG_W, y * IMG_H);
 	(*count)++;
 }
 
 void	exit_exit(t_game *map, int x, int y)
 {
-	set_img(map, &map->img.E[0].img, EXIT_START);
-	map->img.E[0].x = x;
-	map->img.E[0].y = y;
-	set_img(map, &map->img.E[1].img, EXIT_FINAL);
-	map->img.E[1].x = x;
-	map->img.E[1].y = y;
-	mlx_image_to_window(map->mlx, map->img.E[0].img, x * IMG_W, y * IMG_H);
+	set_img(map, &map->img.e[0].img, EXIT_START);
+	map->img.e[0].x = x;
+	map->img.e[0].y = y;
+	set_img(map, &map->img.e[1].img, EXIT_FINAL);
+	map->img.e[1].x = x;
+	map->img.e[1].y = y;
+	mlx_image_to_window(map->mlx, map->img.e[0].img, x * IMG_W, y * IMG_H);
 }
 
 int	check_and_update_map(t_game *map, int x, int y)

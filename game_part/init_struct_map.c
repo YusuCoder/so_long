@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 04:53:32 by ryusupov          #+#    #+#             */
-/*   Updated: 2024/06/07 05:03:01 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:51:20 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	init_values(t_game *map)
 	map->pos.move = 0;
 	map->map.width = 0;
 	map->map.height = 0;
-	map->map.C = 0;
-	map->map.E = 0;
-	map->map.P = 0;
+	map->map.c = 0;
+	map->map.e = 0;
+	map->map.p = 0;
 	map->map.wall = 0;
 	map->map.ground = 0;
 	map->count = 0;

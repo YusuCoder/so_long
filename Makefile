@@ -20,7 +20,6 @@ SRCS				:=	main.c \
 					validation/error_check.c \
 					validation/error_free.c \
 					validation/file_validation.c \
-					validation/map_check.c \
 					game_part/init_struct_map.c \
 					game_part/init_utilities.c \
 					game_part/flood_fill.c \

@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:05:49 by mac               #+#    #+#             */
-/*   Updated: 2024/06/07 05:09:47 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:48:27 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct s_img
 {
 	mlx_image_t			*ground[2];
 	mlx_image_t			*walls;
-	t_multi				E[2];
-	t_multi				P;
-	t_multi				C[100];
+	t_multi				e[2];
+	t_multi				p;
+	t_multi				c[100];
 }						t_img;
 
 typedef struct s_map
@@ -66,9 +66,9 @@ typedef struct s_map
 	char				**fill;
 	int					height;
 	int					width;
-	int					C;
-	int					P;
-	int					E;
+	int					c;
+	int					p;
+	int					e;
 	int					wall;
 	int					ground;
 	int					cc;
