@@ -6,7 +6,7 @@
 /*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:10:04 by mac               #+#    #+#             */
-/*   Updated: 2024/06/07 17:54:06 by ryusupov         ###   ########.fr       */
+/*   Updated: 2024/06/07 19:59:41 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	map_struct(char c, t_game *map, int x, int y)
 		map->map.ground++;
 	if (c == 'E')
 		map->map.e++;
+	if (ft_strchr("CP10E", c) == NULL)
+		free_map_data(COLOR_RED"Error! invalid component!"RESET, map);
 }
 
 void	check_walls(int x, int y, t_game *map)
@@ -53,23 +55,14 @@ static void	check_components(char *str)
 	int	c;
 	int	e;
 	int	p;
-	int	i;
 
 	c = count_check(str, 'C');
 	e = count_check(str, 'E');
 	p = count_check(str, 'P');
 	if (p == 1 && e == 1 && c > 0 && c < 500)
-	{
-		i = 0;
-		while (str[i])
-		{
-			if (not_component(str[i]) == 1)
-				error_exit(COLOR_RED "Error! Invalid component found!" RESET);
-			i++;
-		}
-	}
+		return ;
 	else
-		error_exit(COLOR_RED "There are missing component!" RESET);
+		error_exit(COLOR_RED "Something wrong with components!" RESET);
 }
 
 static void	wrong_file_error(char *name)
